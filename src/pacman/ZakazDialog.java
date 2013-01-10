@@ -388,7 +388,10 @@ public class ZakazDialog extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				delete_material.setVisible(true);
 				
-				
+					int vnezapno=Integer.parseInt(textField_kolvo.getText());
+					
+					if (vnezapno<=0) {JOptionPane.showMessageDialog(contentPane, "Введите положительное число, блин!"); }
+					if (vnezapno>0) {
 				try{ 
 				if(list_material.getModel().getSize()>0){
 					ArrayList<Used_material> arListUsedMater=new ArrayList<Used_material>();
@@ -416,7 +419,7 @@ public class ZakazDialog extends JFrame{
 				textField_kolvo.setText("");
 				}catch(Exception e){
 					JOptionPane.showMessageDialog(null, "Проверьте количество используемого материала.");
-				}
+				}}
 			}
 		});
 		

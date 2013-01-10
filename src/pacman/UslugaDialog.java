@@ -95,7 +95,10 @@ public class UslugaDialog extends JFrame{
 		button_insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("")){
-				
+					int vnezapno=Integer.parseInt(textField_time.getText());
+					int vnezapno2=Integer.parseInt(textField_price.getText());
+					if ((vnezapno<=0)||(vnezapno2<=0)) {JOptionPane.showMessageDialog(contentPane, "¬ведите положительное число, блин!"); }
+					if ((vnezapno>0) && (vnezapno2>0)){
 					try{
 						Usluga u=new Usluga();
 						
@@ -119,7 +122,7 @@ public class UslugaDialog extends JFrame{
 						JOptionPane.showMessageDialog(null, ee.getMessage());
 					}finally{
 						dispose();
-					}
+					}}
 				} else 	JOptionPane.showMessageDialog(null, "¬ведите об€зательные параметры!");
 			}
 		});
@@ -147,7 +150,10 @@ public class UslugaDialog extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("")){
 					try{
-						
+						int vnezapno=Integer.parseInt(textField_time.getText());
+						int vnezapno2=Integer.parseInt(textField_price.getText());
+						if ((vnezapno<=0)||(vnezapno2<=0)) {JOptionPane.showMessageDialog(contentPane, "¬ведите положительное число, блин!"); }
+						if ((vnezapno>0) && (vnezapno2>0)){
 						Usluga u=new Usluga();
 						u.setId_uslugi(Integer.parseInt(label_id_hidden.getText()));
 						u.setNazvanie(textField_name.getText());
@@ -160,7 +166,7 @@ public class UslugaDialog extends JFrame{
 						DBClass db=new DBClass();
 						db.uslugaUpsert(u, "UPDATE");
 						MyFrame.updateList();
-						dispose();
+						dispose();}
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, e.getMessage());
 					}catch(SQLException e){

@@ -103,7 +103,10 @@ public class MaterialDialog extends JFrame {
 		button_insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("")&& !textField_kolvo.getText().equals("")){
-					
+					int vnezapno=Integer.parseInt(textField_price.getText());
+					int vnezapno2=Integer.parseInt(textField_kolvo.getText());
+					if ((vnezapno<=0)||(vnezapno2<=0)) {JOptionPane.showMessageDialog(contentPane, "¬ведите положительное число, блин!"); }
+					if ((vnezapno>0) && (vnezapno2>0)){
 					try{
 						
 						Material m=new Material();
@@ -124,7 +127,7 @@ public class MaterialDialog extends JFrame {
 						JOptionPane.showMessageDialog(null, ee.getMessage());
 					}finally{
 						dispose();
-					}
+					}}
 				} else 	JOptionPane.showMessageDialog(null, "¬ведите об€зательные параметры!");
 			}
 		});
@@ -145,7 +148,10 @@ public class MaterialDialog extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("") &&	!textField_kolvo.getText().equals("")){
 					try{
-						
+						int vnezapno=Integer.parseInt(textField_price.getText());
+						int vnezapno2=Integer.parseInt(textField_kolvo.getText());
+						if ((vnezapno<=0)||(vnezapno2<=0)) {JOptionPane.showMessageDialog(contentPane, "¬ведите положительное число, блин!"); }
+						if ((vnezapno>0) && (vnezapno2>0)){
 						Material m=new Material();
 						m.setId_materiala(Integer.parseInt(label_id_hidden.getText()));
 						m.setNazvanie(textField_name.getText());
@@ -156,7 +162,7 @@ public class MaterialDialog extends JFrame {
 						DBClass db=new DBClass();
 						db.materialUpsert(m, "UPDATE");
 						MyFrame.updateList();
-						dispose();
+						dispose();}
 					}catch(NumberFormatException e){
 						JOptionPane.showMessageDialog(null, e.getMessage());
 					}catch(SQLException e){
