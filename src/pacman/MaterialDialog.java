@@ -1,6 +1,5 @@
 package pacman;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,6 +16,7 @@ import java.awt.Font;
 import java.sql.SQLException;
 
 
+@SuppressWarnings("serial")
 public class MaterialDialog extends JFrame {
 
 	private JPanel contentPane;
@@ -52,48 +52,50 @@ public class MaterialDialog extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 400, 290);
 		contentPane = new JPanel();
+//		contentPane.setBackground(new Color(255, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+//		panel.setBackground(new Color(255, 204, 255));
 		panel.setBounds(0, 0, 384, 256);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel label_name = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435");
-		label_name.setBounds(31, 44, 54, 14);
+		label_name.setBounds(31, 44, 109, 14);
 		panel.add(label_name);
 		
 		JLabel label_ed_izn = new JLabel("\u0415\u0434\u0438\u043D\u0438\u0446\u0430 \u0438\u0437\u043C\u0435\u0440\u0435\u043D\u0438\u044F");
-		label_ed_izn.setBounds(31, 81, 109, 14);
+		label_ed_izn.setBounds(31, 81, 120, 14);
 		panel.add(label_ed_izn);
 		
 		JLabel label_price = new JLabel("\u0426\u0435\u043D\u0430");
-		label_price.setBounds(31, 124, 35, 14);
+		label_price.setBounds(31, 124, 79, 14);
 		panel.add(label_price);
 		
 		JLabel label_kolvo = new JLabel("\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E");
-		label_kolvo.setBounds(31, 163, 66, 14);
+		label_kolvo.setBounds(31, 163, 96, 14);
 		panel.add(label_kolvo);
 		
 		textField_name = new JTextField();
-		textField_name.setBounds(150, 41, 148, 20);
+		textField_name.setBounds(160, 41, 138, 20);
 		panel.add(textField_name);
 		textField_name.setColumns(10);
 		
 		textField_ed_izm = new JTextField();
-		textField_ed_izm.setBounds(150, 81, 148, 20);
+		textField_ed_izm.setBounds(160, 81, 138, 20);
 		panel.add(textField_ed_izm);
 		textField_ed_izm.setColumns(10);
 		
 		textField_price = new JTextField();
-		textField_price.setBounds(150, 121, 148, 20);
+		textField_price.setBounds(160, 121, 138, 20);
 		panel.add(textField_price);
 		textField_price.setColumns(10);
 		
 		textField_kolvo = new JTextField();
-		textField_kolvo.setBounds(150, 160, 148, 20);
+		textField_kolvo.setBounds(160, 160, 138, 20);
 		panel.add(textField_kolvo);
 		textField_kolvo.setColumns(10);
 		
@@ -101,7 +103,9 @@ public class MaterialDialog extends JFrame {
 		button_insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("")&& !textField_kolvo.getText().equals("")){
+					
 					try{
+						
 						Material m=new Material();
 						m.setNazvanie(textField_name.getText());
 						m.setEdinica_izmereniya(textField_ed_izm.getText());
@@ -124,7 +128,7 @@ public class MaterialDialog extends JFrame {
 				} else 	JOptionPane.showMessageDialog(null, "¬ведите об€зательные параметры!");
 			}
 		});
-		button_insert.setBounds(56, 197, 148, 23);
+		button_insert.setBounds(41, 197, 163, 23);
 		panel.add(button_insert);
 		
 		
@@ -133,7 +137,7 @@ public class MaterialDialog extends JFrame {
 				dispose();
 			}
 		});
-		button_cancel.setBounds(231, 197, 89, 23);
+		button_cancel.setBounds(214, 197, 120, 23);
 		panel.add(button_cancel);
 		
 		
@@ -141,6 +145,7 @@ public class MaterialDialog extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("") &&	!textField_kolvo.getText().equals("")){
 					try{
+						
 						Material m=new Material();
 						m.setId_materiala(Integer.parseInt(label_id_hidden.getText()));
 						m.setNazvanie(textField_name.getText());
@@ -164,7 +169,7 @@ public class MaterialDialog extends JFrame {
 				} else 	JOptionPane.showMessageDialog(null, "¬ведите об€зательные параметры!");
 			}
 		});
-		button_update.setBounds(56, 197, 148, 23);
+		button_update.setBounds(41, 197, 163, 23);
 		panel.add(button_update);
 		
 		JLabel label = new JLabel("*");
@@ -185,8 +190,8 @@ public class MaterialDialog extends JFrame {
 		label_2.setBounds(308, 160, 12, 14);
 		panel.add(label_2);
 		
-		JLabel label_3 = new JLabel("\u041F\u043E\u043B\u044F \u043E\u0442\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 ");
-		label_3.setBounds(49, 231, 99, 14);
+		JLabel label_3 = new JLabel("\u041F\u043E\u043B\u044F, \u043E\u0442\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 ");
+		label_3.setBounds(31, 231, 133, 14);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("*");
@@ -196,12 +201,8 @@ public class MaterialDialog extends JFrame {
 		panel.add(label_4);
 		
 		JLabel label_5 = new JLabel("\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B  \u0434\u043B\u044F \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F!");
-		label_5.setBounds(163, 231, 171, 14);
+		label_5.setBounds(163, 231, 187, 14);
 		panel.add(label_5);
-		
-		JLabel label_6 = new JLabel("\u041A\u043E\u0434");
-		label_6.setBounds(31, 12, 29, 14);
-		panel.add(label_6);
 		
 		
 		label_id_hidden.setFont(new Font("Tahoma", Font.BOLD, 12));

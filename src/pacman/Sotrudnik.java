@@ -1,6 +1,6 @@
 	package pacman;
 
-	import java.sql.SQLException;
+
 
 	public class Sotrudnik {
 		private int id_sotrudnika;

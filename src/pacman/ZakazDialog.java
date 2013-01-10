@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
+@SuppressWarnings("serial")
 public class ZakazDialog extends JFrame{
 
 	private JPanel contentPane;
@@ -50,15 +51,18 @@ public class ZakazDialog extends JFrame{
 	 * Create the frame.
 	 */
 	public ZakazDialog() {
+		setTitle("\u041D\u043E\u0432\u044B\u0439 \u0437\u0430\u043A\u0430\u0437");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 686, 440);
+		setBounds(100, 100, 1000, 440);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 0));
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		JButton button_add_usluga = new JButton("+");
@@ -141,12 +145,14 @@ public class ZakazDialog extends JFrame{
 						z.setDate(Date.valueOf(textField_date.getText()));
 						z.setSum_zakaza(0);
 						
+						DBClass db=new DBClass();
+						db.zakazUpsert(z, "INSERT");
+						
 						int sum=0;
 						DBClass d2=new DBClass();
 						Zakaz z2=d2.zakaz_ID_FromDB();
 						
-						DBClass db=new DBClass();
-						db.zakazUpsert(z, "INSERT");
+						
 						
 						if(list_usluga.getModel().getSize()>0){
 						
@@ -215,28 +221,30 @@ public class ZakazDialog extends JFrame{
 		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JPanel zakaz = new JPanel();
+//		zakaz.setBackground(new Color(255, 204, 255));
 		zakaz.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.add(zakaz);
 		zakaz.setLayout(null);
 		
 		JLabel client_name = new JLabel("\u0418\u043C\u044F \u043A\u043B\u0438\u0435\u043D\u0442\u0430");
-		client_name.setBounds(10, 60, 86, 14);
+		client_name.setBounds(10, 51, 105, 14);
 		zakaz.add(client_name);
 		
 		
-		comboBox_client.setBounds(10, 76, 149, 20);
+		comboBox_client.setBounds(10, 76, 253, 20);
 		zakaz.add(comboBox_client);
 		
 		JLabel date = new JLabel("\u0414\u0430\u0442\u0430 \u0437\u0430\u043A\u0430\u0437\u0430");
-		date.setBounds(10, 137, 86, 14);
+		date.setBounds(10, 120, 105, 14);
 		zakaz.add(date);
 		
 		JLabel label_zakaz = new JLabel("\u0417\u0430\u043A\u0430\u0437");
-		label_zakaz.setBounds(20, 12, 46, 14);
+		label_zakaz.setBounds(10, 12, 56, 14);
 		zakaz.add(label_zakaz);
 		
 		JButton button_add_client = new JButton("+");
 		button_add_client.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				ClientDialog d=new ClientDialog();
 				d.setTitle("Добавление клиента");
@@ -246,11 +254,11 @@ public class ZakazDialog extends JFrame{
 				d.clientDiaInsert();
 			}
 		});
-		button_add_client.setBounds(169, 75, 41, 23);
+		button_add_client.setBounds(273, 75, 41, 23);
 		zakaz.add(button_add_client);
 		
 		textField_date = new JTextField();
-		textField_date.setBounds(10, 162, 86, 20);
+		textField_date.setBounds(10, 145, 86, 20);
 		zakaz.add(textField_date);
 		textField_date.setColumns(10);
 		
@@ -259,37 +267,42 @@ public class ZakazDialog extends JFrame{
 		label_id_hidden.setBounds(88, 11, 79, 14);
 		zakaz.add(label_id_hidden);
 		
+	//	JLabel im=new JLabel((new ImageIcon(getClass().getResource("oily_hair - копия1.gif"))));
+	//	im.setBounds(10, 176, 304, 195);
+	//	zakaz.add(im);
+		
 		JPanel panel_3 = new JPanel();
+	//	panel_3.setBackground(new Color(255, 204, 255));
 		panel_3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 		
 		JLabel label_uslugi = new JLabel("\u0423\u0441\u043B\u0443\u0433\u0438");
-		label_uslugi.setBounds(64, 11, 46, 14);
+		label_uslugi.setBounds(64, 11, 77, 14);
 		panel_3.add(label_uslugi);
 		
 		JLabel usluga_name = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0443\u0441\u043B\u0443\u0433\u0438");
-		usluga_name.setBounds(10, 36, 95, 14);
+		usluga_name.setBounds(10, 36, 131, 14);
 		panel_3.add(usluga_name);
 		
 		
-		comboBox_usluga.setBounds(10, 50, 157, 20);
+		comboBox_usluga.setBounds(10, 50, 253, 20);
 		panel_3.add(comboBox_usluga);
 		
 		JLabel master_name = new JLabel("\u041C\u0430\u0441\u0442\u0435\u0440");
-		master_name.setBounds(10, 81, 46, 14);
+		master_name.setBounds(10, 81, 103, 14);
 		panel_3.add(master_name);
 		
 		
-		comboBox_sotrudnik.setBounds(10, 97, 157, 20);
+		comboBox_sotrudnik.setBounds(10, 97, 253, 20);
 		panel_3.add(comboBox_sotrudnik);
 				
 		
-		add_usluga.setBounds(10, 135, 157, 23);
+		add_usluga.setBounds(10, 135, 183, 23);
 		panel_3.add(add_usluga);
 		
 		
-		list_usluga.setBounds(10, 178, 157, 135);
+		list_usluga.setBounds(10, 178, 260, 135);
 		delete_usluga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<Content_zakaza> cc=new ArrayList<Content_zakaza>();
@@ -305,11 +318,12 @@ public class ZakazDialog extends JFrame{
 		});
 		
 
-		delete_usluga.setBounds(10, 324, 157, 23);
+		delete_usluga.setBounds(10, 324, 183, 23);
 		panel_3.add(delete_usluga);
 		
 		
 		button_add_usluga.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				UslugaDialog d=new UslugaDialog();
 				d.setTitle("Добавление услуги");
@@ -319,11 +333,12 @@ public class ZakazDialog extends JFrame{
 				d.uslugaDiaInsert();
 			}
 		});
-		button_add_usluga.setBounds(169, 49, 41, 23);
+		button_add_usluga.setBounds(273, 50, 41, 23);
 		panel_3.add(button_add_usluga);
 		
 		
 		button_add_sotrudnik.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				SotrudnikDialog d=new SotrudnikDialog();
 				d.setTitle("Добавление сотрудника");
@@ -333,16 +348,17 @@ public class ZakazDialog extends JFrame{
 				d.sotrDiaInsert();
 			}
 		});
-		button_add_sotrudnik.setBounds(169, 96, 41, 23);
+		button_add_sotrudnik.setBounds(273, 97, 41, 23);
 		panel_3.add(button_add_sotrudnik);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(list_usluga);
-		scrollPane.setBounds(10, 178, 157, 135);
+		scrollPane.setBounds(10, 178, 304, 135);
 		panel_3.add(scrollPane);
 		delete_usluga.setVisible(true);
 		
 		JPanel panel_4 = new JPanel();
+//		panel_4.setBackground(new Color(255, 204, 255));
 		panel_4.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.add(panel_4);
 		panel_4.setLayout(null);
@@ -352,15 +368,15 @@ public class ZakazDialog extends JFrame{
 		panel_4.add(label_materiali);
 		
 		JLabel material_name = new JLabel("\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u0430");
-		material_name.setBounds(10, 36, 115, 14);
+		material_name.setBounds(10, 36, 149, 14);
 		panel_4.add(material_name);
 		
 		
-		comboBox_material.setBounds(10, 50, 157, 20);
+		comboBox_material.setBounds(10, 50, 253, 20);
 		panel_4.add(comboBox_material);
 		
 		JLabel kolvo_name = new JLabel("\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E");
-		kolvo_name.setBounds(10, 81, 86, 14);
+		kolvo_name.setBounds(10, 81, 122, 14);
 		panel_4.add(kolvo_name);
 		
 		textField_kolvo = new JTextField();
@@ -371,6 +387,8 @@ public class ZakazDialog extends JFrame{
 		add_material.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				delete_material.setVisible(true);
+				
+				
 				try{ 
 				if(list_material.getModel().getSize()>0){
 					ArrayList<Used_material> arListUsedMater=new ArrayList<Used_material>();
@@ -403,7 +421,7 @@ public class ZakazDialog extends JFrame{
 		});
 		
 		
-		add_material.setBounds(10, 135, 157, 23);
+		add_material.setBounds(10, 135, 187, 23);
 		panel_4.add(add_material);
 		delete_material.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -419,11 +437,12 @@ public class ZakazDialog extends JFrame{
 		});
 		
 		
-		delete_material.setBounds(10, 324, 157, 23);
+		delete_material.setBounds(10, 324, 187, 23);
 		panel_4.add(delete_material);
 		
 		JButton button_add_material = new JButton("+");
 		button_add_material.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				MaterialDialog d=new MaterialDialog();
 				d.setTitle("Добавление материала");
@@ -433,12 +452,12 @@ public class ZakazDialog extends JFrame{
 				d.materialDiaInsert();
 			}
 		});
-		button_add_material.setBounds(169, 49, 41, 23);
+		button_add_material.setBounds(273, 49, 41, 23);
 		panel_4.add(button_add_material);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setViewportView(list_material);
-		scrollPane_1.setBounds(10, 178, 157, 135);
+		scrollPane_1.setBounds(10, 178, 304, 135);
 		panel_4.add(scrollPane_1);
 		
 		

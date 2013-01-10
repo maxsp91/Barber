@@ -1,6 +1,5 @@
 package pacman;
 
-import java.util.ArrayList;
 
 public class Zakaz {
 	private Integer id_zakaza;
@@ -55,6 +54,6 @@ public class Zakaz {
 		return this.getId_zakaza() + "  (" + this.getDate() + ")  " + this.getSum_zakaza() + " руб. -- "+ this.getClient_familiya()+"  "+this.getClient_imya();
 	}
 
-	private ArrayList<Content_zakaza> content= new ArrayList<Content_zakaza>();
-	private ArrayList<Used_material> materials= new ArrayList<Used_material>();
+	//private ArrayList<Content_zakaza> content= new ArrayList<Content_zakaza>();
+	//private ArrayList<Used_material> materials= new ArrayList<Used_material>();
 }

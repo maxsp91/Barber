@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
+@SuppressWarnings("serial")
 public class ClientDialog extends JFrame{
 	private JPanel contentPane;
 	private JTextField textField_familiya;
@@ -51,12 +52,13 @@ public class ClientDialog extends JFrame{
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+//		panel.setBackground(new Color(255, 204, 255));
 		panel.setBounds(0, 0, 392, 267);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel label_name = new JLabel("\u0418\u043C\u044F");
-		label_name.setBounds(40, 54, 46, 14);
+		label_name.setBounds(40, 54, 108, 14);
 		panel.add(label_name);
 		
 		JLabel label_surname = new JLabel("\u0424\u0430\u043C\u0438\u043B\u0438\u044F");
@@ -131,6 +133,7 @@ public class ClientDialog extends JFrame{
 		});
 		button_insert.setBounds(85, 187, 149, 23);
 		panel.add(button_insert);
+	//	checkBox.setBackground(new Color(255, 204, 255));
 		
 		
 		checkBox.setBounds(172, 153, 97, 23);
@@ -145,8 +148,8 @@ public class ClientDialog extends JFrame{
 		button_cancel.setBounds(250, 187, 89, 23);
 		panel.add(button_cancel);
 		
-		JLabel label = new JLabel("\u041F\u043E\u043B\u044F \u043E\u0442\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 ");
-		label.setBounds(69, 221, 99, 14);
+		JLabel label = new JLabel("\u041F\u043E\u043B\u044F, \u043E\u0442\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 ");
+		label.setBounds(51, 221, 122, 14);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("*");
@@ -156,7 +159,8 @@ public class ClientDialog extends JFrame{
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B  \u0434\u043B\u044F \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F!");
-		label_2.setBounds(183, 221, 171, 14);
+		label_2.setBackground(new Color(255, 204, 255));
+		label_2.setBounds(183, 221, 199, 14);
 		panel.add(label_2);
 		
 		
@@ -193,10 +197,6 @@ public class ClientDialog extends JFrame{
 		});
 		button_update.setBounds(85, 187, 149, 23);
 		panel.add(button_update);
-		
-		JLabel label_3 = new JLabel("\u041A\u043E\u0434");
-		label_3.setBounds(40, 4, 46, 14);
-		panel.add(label_3);
 		
 		
 		label_id_hidden.setFont(new Font("Tahoma", Font.BOLD, 12));

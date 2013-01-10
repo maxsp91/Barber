@@ -9,6 +9,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class SotrudnikDialog extends JFrame{
 		private JPanel contentPane;
 		private JTextField textField_otchestvo;
@@ -46,85 +47,84 @@ public class SotrudnikDialog extends JFrame{
 		 * Create the frame.
 		 */
 		public SotrudnikDialog() {
+			setTitle("\u041D\u043E\u0432\u044B\u0439 \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u043A");
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			
 			setBounds(100, 100, 450, 330);
 			contentPane = new JPanel();
+//			contentPane.setBackground(new Color(255, 204, 255));
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 			
 			
 			JLabel label_familiya = new JLabel("\u0424\u0430\u043C\u0438\u043B\u0438\u044F");
-			label_familiya.setBounds(10, 37, 46, 14);
+			label_familiya.setBounds(10, 37, 110, 14);
 			contentPane.add(label_familiya);
 			
 			JLabel label_imya = new JLabel("\u0418\u043C\u044F");
-			label_imya.setBounds(10, 62, 26, 14);
+			label_imya.setBounds(10, 62, 110, 14);
 			contentPane.add(label_imya);
 			
 			JLabel label_otchestvo = new JLabel("\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E");
-			label_otchestvo.setBounds(10, 87, 75, 14);
+			label_otchestvo.setBounds(10, 87, 110, 14);
 			contentPane.add(label_otchestvo);
 			
 			textField_otchestvo = new JTextField();
-			textField_otchestvo.setBounds(143, 84, 210, 20);
+			textField_otchestvo.setBounds(167, 84, 186, 20);
 			contentPane.add(textField_otchestvo);
 			textField_otchestvo.setColumns(10);
 			
 			textField_imya = new JTextField();
-			textField_imya.setBounds(143, 58, 210, 20);
+			textField_imya.setBounds(167, 58, 186, 20);
 			contentPane.add(textField_imya);
 			textField_imya.setColumns(10);
 			
 			textField_familiya = new JTextField();
-			textField_familiya.setBounds(143, 33, 210, 20);
+			textField_familiya.setBounds(167, 33, 186, 20);
 			contentPane.add(textField_familiya);
 			textField_familiya.setColumns(10);
 			
 			JLabel label_data_priema = new JLabel("\u0414\u0430\u0442\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u043D\u0430 \u0440\u0430\u0431\u043E\u0442\u0443");
-			label_data_priema.setBounds(10, 112, 122, 14);
+			label_data_priema.setBounds(10, 112, 147, 14);
 			contentPane.add(label_data_priema);
 			
 			JLabel label_phone = new JLabel("\u0422\u0435\u043B\u0435\u0444\u043E\u043D");
-			label_phone.setBounds(10, 137, 46, 14);
+			label_phone.setBounds(10, 137, 134, 14);
 			contentPane.add(label_phone);
 			
 			JLabel label_doljnost = new JLabel("\u0414\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C");
-			label_doljnost.setBounds(10, 162, 75, 14);
+			label_doljnost.setBounds(10, 162, 140, 14);
 			contentPane.add(label_doljnost);
 			
 			JLabel label_kvalification = new JLabel("\u041A\u0432\u0430\u043B\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044F");
-			label_kvalification.setBounds(10, 190, 91, 14);
+			label_kvalification.setBounds(10, 190, 147, 14);
 			contentPane.add(label_kvalification);
 			
 			textField_phone = new JTextField();
-			textField_phone.setBounds(143, 134, 210, 20);
+			textField_phone.setBounds(167, 134, 186, 20);
 			contentPane.add(textField_phone);
 			textField_phone.setColumns(10);
 			
-			textField_date.setBounds(143, 109, 210, 20);
+			textField_date.setBounds(167, 109, 186, 20);
 			contentPane.add(textField_date);
-			
-			final JLabel label_id = new JLabel("\u041A\u043E\u0434");
-			label_id.setBounds(10, 11, 46, 14);
-			contentPane.add(label_id);
 			
 			label_id_hidden.setFont(new Font("Tahoma", Font.BOLD, 12));
 			label_id_hidden.setBounds(143, 11, 122, 14);
 			contentPane.add(label_id_hidden);
 
-			button_insert.setBounds(98, 230, 145, 23);
+			button_insert.setBounds(83, 230, 160, 23);
 			contentPane.add(button_insert);
 			
-			button_cancel.setBounds(264, 230, 89, 23);
+			button_cancel.setBounds(264, 230, 104, 23);
 			contentPane.add(button_cancel);
 
-			button_update.setBounds(98, 230, 145, 23);
+			button_update.setBounds(83, 230, 160, 23);
 			contentPane.add(button_update);
 			
 			JButton button_plus_doljnost = new JButton("+");
 			button_plus_doljnost.addActionListener(new ActionListener() {
+				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent arg0) {
 					DoljnostDialog d=new DoljnostDialog();
 					d.setTitle("Добавление должности");
@@ -136,6 +136,7 @@ public class SotrudnikDialog extends JFrame{
 			
 			JButton button_plus_kvalification = new JButton("+");
 			button_plus_kvalification.addActionListener(new ActionListener() {
+				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent arg0) {
 					KvalificationDialog d=new KvalificationDialog();
 					d.setTitle("Добавление квалификации");
@@ -145,8 +146,8 @@ public class SotrudnikDialog extends JFrame{
 			button_plus_kvalification.setBounds(359, 184, 41, 23);
 			contentPane.add(button_plus_kvalification);
 			
-			JLabel label = new JLabel("\u041F\u043E\u043B\u044F \u043E\u0442\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 ");
-			label.setBounds(83, 264, 99, 14);
+			JLabel label = new JLabel("\u041F\u043E\u043B\u044F, \u043E\u0442\u043C\u0435\u0447\u0435\u043D\u043D\u044B\u0435 ");
+			label.setBounds(60, 264, 122, 14);
 			contentPane.add(label);
 			
 			JLabel label_3 = new JLabel("*");
@@ -156,7 +157,7 @@ public class SotrudnikDialog extends JFrame{
 			contentPane.add(label_3);
 			
 			JLabel label_4 = new JLabel("\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B  \u0434\u043B\u044F \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F!");
-			label_4.setBounds(197, 264, 171, 14);
+			label_4.setBounds(197, 264, 203, 14);
 			contentPane.add(label_4);
 			
 			JLabel label_5 = new JLabel("*");
@@ -172,11 +173,11 @@ public class SotrudnikDialog extends JFrame{
 			contentPane.add(label_1);
 			
 			
-			comboBox_doljnost.setBounds(143, 159, 210, 20);
+			comboBox_doljnost.setBounds(167, 159, 186, 20);
 			contentPane.add(comboBox_doljnost);
 			
 
-			comboBox_kvalification.setBounds(143, 187, 210, 20);
+			comboBox_kvalification.setBounds(167, 187, 186, 20);
 			contentPane.add(comboBox_kvalification);
 
 			//Actions for button "Добавить"

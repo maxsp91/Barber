@@ -769,7 +769,7 @@ import java.util.ArrayList;
 		public void uslugaUpsert(Usluga u, String paramUpsert){
 			if((paramUpsert!= null) && (paramUpsert.equalsIgnoreCase("Insert"))){
 				try {
-					stat = conn.prepareStatement("INSERT INTO Usluga(nazvanie, price, time, length_hair, sex) VALUES(?, ?, ?, ?, ?)");
+					stat = conn.prepareStatement("INSERT INTO Usluga([nazvanie], [price], [time], [length_hair], [sex]) VALUES(?, ?, ?, ?, ?)");
 					
 					stat.setString(1, u.getNazvanie());
 					stat.setInt(2, u.getPrice());
@@ -782,7 +782,7 @@ import java.util.ArrayList;
 			}
 			else if((paramUpsert!= null) && (paramUpsert.equalsIgnoreCase("Update"))){
 				try {
-					stat = conn.prepareStatement("UPDATE Usluga SET nazvanie = ?, price = ?, time = ?, length_hair = ?, sex = ? WHERE id_uslugi = ? ");
+					stat = conn.prepareStatement("UPDATE Usluga SET [nazvanie] = ?, [price] = ?, [time] = ?, [length_hair] = ?, [sex] = ? WHERE [id_uslugi] = ? ");
 					
 					stat.setString(1, u.getNazvanie());
 					stat.setInt(2, u.getPrice());
@@ -958,7 +958,7 @@ import java.util.ArrayList;
 		}
 		
 		
-		public ArrayList<String> otchetZakaz() throws SQLException{
+/*		public ArrayList<String> otchetZakaz() throws SQLException{
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT c.familiya, c.imya, z.date, z.sum_zakaza, " +
 					"u.nazvanie, s.familiya, m.nazvanie, um.kol_vo " +
@@ -977,5 +977,32 @@ import java.util.ArrayList;
 			}
 			this.close();
 			return ar;
+		}*/
+		
+		public ResultSet otchet(String zapros) throws SQLException{
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(zapros);
+		//	this.close();
+			return rs;
+		}
+		public ResultSet otchetPrib(String zapros) throws SQLException{
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(zapros);
+			rs.rowUpdated();
+	//	..	zapros="SELECT MonthName(DatePart('m', z.date)) AS 'ћес€ц' from Zakaz z GROUP BY DatePart('m', z.date)";
+			while (rs.next())
+			{
+				if(rs.getInt(1)==12){
+					rs.updateString(1, "ƒекабрь");
+				}
+				else if(rs.getInt(1)==10){
+					rs.updateString(1, "ќкт€брь");
+				}
+				
+			}
+			
+			
+			//this.close();
+			return rs;
 		}
 	}

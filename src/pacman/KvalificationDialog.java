@@ -2,24 +2,24 @@ package pacman;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Date;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
+
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class KvalificationDialog extends JDialog{
 	private JTextField textField;
 	private JTextField textField_1;
 	public KvalificationDialog() {
+//		getContentPane().setBackground(new Color(255, 204, 255));
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 260, 210);
 		getContentPane().setLayout(null);
 		setModal(true);
 		JLabel label = new JLabel("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043A\u0432\u0430\u043B\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0438");
-		label.setBounds(10, 11, 173, 14);
+		label.setBounds(10, 11, 219, 14);
 		getContentPane().add(label);
 		
 		textField = new JTextField();
@@ -28,7 +28,7 @@ public class KvalificationDialog extends JDialog{
 		textField.setColumns(10);
 		
 		JButton button_add = new JButton("\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C");
-		button_add.setBounds(10, 129, 89, 23);
+		button_add.setBounds(10, 129, 113, 23);
 		button_add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField.getText().equals("")){
@@ -58,7 +58,7 @@ public class KvalificationDialog extends JDialog{
 		getContentPane().add(button_add);
 		
 		JButton button_cancel = new JButton("\u041E\u0442\u043C\u0435\u043D\u0430");
-		button_cancel.setBounds(109, 129, 89, 23);
+		button_cancel.setBounds(133, 129, 109, 23);
 		button_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -67,7 +67,7 @@ public class KvalificationDialog extends JDialog{
 		getContentPane().add(button_cancel);
 		
 		JLabel label_1 = new JLabel("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u0440\u043E\u0446\u0435\u043D\u0442 \u0437/\u043F\u043B\u0430\u0442\u044B");
-		label_1.setBounds(10, 67, 156, 14);
+		label_1.setBounds(10, 67, 206, 14);
 		getContentPane().add(label_1);
 		
 		textField_1 = new JTextField();

@@ -4,8 +4,10 @@
 	import java.awt.event.*;
 	import java.sql.*;
 	import java.util.*;
+
 import javax.swing.*;
 
+	@SuppressWarnings("serial")
 	public class MyFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -15,9 +17,19 @@ import javax.swing.*;
 		JMenuItem menuItemUsluga = new JMenuItem("Услуги");
 		JMenuItem menuItemClient = new JMenuItem("Клиенты");
 		JMenuItem menuItemSotrudnik = new JMenuItem("Сотрудники");
+		JMenuItem menuItemExit = new JMenuItem("Выход");
 		JMenu menuOtchet = new JMenu("Отчеты");
 		JMenuItem menuItemOtchetZakaz = new JMenuItem("Отчет по заказам");
 		JMenuItem menuItemOtchetPribul = new JMenuItem("Отчет по прибыли");
+		
+		
+//		ImageIcon image1 = new ImageIcon(getToolkit().createImage("bye00000.gif"));
+//		ImageIcon image2 = new ImageIcon(getToolkit().createImage("images/play.gif"));
+//		ImageIcon image3 = new ImageIcon(getToolkit().createImage("images/pause.gif"));
+//		ImageIcon image4 = new ImageIcon(getToolkit().createImage("images/delete.gif"));
+//		ImageIcon image5 = new ImageIcon(getToolkit().createImage("images/play.gif"));
+//		ImageIcon image6 = new ImageIcon(getToolkit().createImage("images/pause.gif"));
+//		ImageIcon image7 = new ImageIcon(getToolkit().createImage("images/delete.gif"));
 
 		JPanel panelRight = new JPanel();
 		JPanel panelCenter = new JPanel();
@@ -43,6 +55,8 @@ import javax.swing.*;
 		ButtonsMainActionListener butMainActListener = new ButtonsMainActionListener();
 		MainMenuActionListener mainMenuActListener = new MainMenuActionListener();
 		OtchetsActionListener otchetsActListener = new OtchetsActionListener();
+		
+//		JLabel im=new JLabel((new ImageIcon(getClass().getResource("oily_hair копия.gif"))));
 		
 		//Actions for Menu "Главное меню"
 		class MainMenuActionListener implements ActionListener {
@@ -76,15 +90,45 @@ import javax.swing.*;
 					label_name.setText("Сотрудник");
 					updateList();
 				}
+				
+				//Action for menuItem "Выход"
+				if (e.getSource() == menuItemExit) {
+					Object[] options = {"Да",
+		                    "Нет",
+		                    "Отмена"};
+
+					int d = JOptionPane.showOptionDialog(MyFrame.this,
+					"Вы действительно хотите выйти? ", null, JOptionPane.YES_NO_CANCEL_OPTION,
+				    JOptionPane.QUESTION_MESSAGE, null, options, options[2]);// переменная отвечает за
+											// //константу, возвращаемую
+											// нажатием кнопок в диалоге
+											// ConfirmDialog
+			if (d == JOptionPane.YES_OPTION && d == JOptionPane.OK_OPTION) {// если
+																// нажать
+																// ОК
+																// или
+																// YES
+				MyFrame.this.dispose();
+	
+			}
+			if (d == JOptionPane.CANCEL_OPTION && d == JOptionPane.NO_OPTION)// если
+																// нажаты
+																// NO
+																// или
+																// CANCEL
+				dispose();// закрывание диалога
+		
+	
+				}
 			}
 		}
 
 		//Actions for Menu "Отчеты"
 		class OtchetsActionListener implements ActionListener {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				// Action for menuItem "Отчет по заказам"
 				if (e.getSource() == menuItemOtchetZakaz) {
-					label_name.setText("Отчет по заказам");
 					Otchet_zakaz o=new Otchet_zakaz();
 					o.show();
 					o.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -92,14 +136,15 @@ import javax.swing.*;
 				
 				// Action for menuItem "Отчет по прибыли"
 				if (e.getSource() == menuItemOtchetPribul) {
-					label_name.setText("Отчет по прибыли");
-				
+					Otchet_prib o=new Otchet_prib();
+					o.show();
+					o.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				}
 			}
 		}
 
-		//Actions for buttons (Insert, Update, Delete, Details, Search)
 		class ButtonsMainActionListener implements ActionListener{
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e){
 		//-----------------------------------------------
 				if(label_name.getText().equalsIgnoreCase("Сотрудник")){ 
@@ -428,49 +473,81 @@ import javax.swing.*;
 		
 		//Конструктор главной формы
 		public MyFrame() throws SQLException, ClassNotFoundException {
-			this.setSize(740, 500);
+			this.setSize(740, 510);
 			this.setDefaultCloseOperation(2);
 			this.setTitle("Парикмахерская");
 
 			panelRight.setPreferredSize(new Dimension(200, 0));
 			panelCenter.setPreferredSize(new Dimension(0, 0));
+			panelButtons.setForeground(new Color(255, 153, 204));
 			panelButtons.setPreferredSize(new Dimension(0, 80));
+			
+//			panelCenter.setBackground(new Color(255, 204, 255));
+//			panelRight.setBackground(SystemColor.desktop);
+//			panelButtons.setBackground(new Color(0, 0, 0));
 
-			panelRight.setBackground(Color.LIGHT_GRAY);
-			panelCenter.setBackground(Color.LIGHT_GRAY);
-			panelButtons.setBackground(Color.LIGHT_GRAY);
 
 			//Right Panel (Insert, Update, Delete, Details)
 			this.getContentPane().add(panelRight, BorderLayout.EAST);
 			panelRight.setLayout(null);
+
 			
-			button_insert.setBounds(23, 58, 153, 38);
+//			button_insert.setIcon(new ImageIcon(getClass().getResource("добавить1 копия.gif"))); 
+//			button_insert.setRolloverIcon(new ImageIcon(getClass().getResource("добавить2 копия.gif")));
+//			button_insert.setPressedIcon(new ImageIcon(getClass().getResource("добавить3 копия.gif"))); 
+//			button_insert.setBorderPainted(false);
+//			button_insert.setFocusPainted(false); 
+//			button_insert.setContentAreaFilled(false);
+			
+			button_insert.setBounds(30, 40, 153, 38);
 			button_insert.addActionListener(butMainActListener);
 			panelRight.add(button_insert);
 			
-			button_update.setBounds(23, 118, 153, 40);
+			button_update.setBounds(30, 106, 153, 40);
 			button_update.addActionListener(butMainActListener);
 			panelRight.add(button_update);
+
 			
-			button_delete.setBounds(23, 180, 153, 36);
+//			button_update.setIcon(new ImageIcon(getClass().getResource("изменить1 копия.gif"))); 
+//			button_update.setRolloverIcon(new ImageIcon(getClass().getResource("изменить2 копия.gif")));
+//			button_update.setPressedIcon(new ImageIcon(getClass().getResource("изменить3 копия.gif"))); 
+//			button_update.setBorderPainted(false);
+//			button_update.setFocusPainted(false); 
+//			button_update.setContentAreaFilled(false);
+			
+			
+//			button_delete.setIcon(new ImageIcon(getClass().getResource("удалить1 копия.gif"))); 
+//			button_delete.setRolloverIcon(new ImageIcon(getClass().getResource("удалить2 копия.gif")));
+//			button_delete.setPressedIcon(new ImageIcon(getClass().getResource("удалить3 копия.gif"))); 
+//			button_delete.setBorderPainted(false);
+//			button_delete.setFocusPainted(false); 
+//			button_delete.setContentAreaFilled(false);
+			
+			button_delete.setBounds(30, 169, 153, 36);
 			button_delete.addActionListener(butMainActListener);
 			panelRight.add(button_delete);
+
+	//		im.setBounds(30, 243, 145, 100);
+	//		panelRight.add(im);
 			
 			//Buttons Panel (Search)
 			this.getContentPane().add(panelButtons, BorderLayout.SOUTH);
 			panelButtons.setLayout(null);
+	//		label_search.setForeground(new Color(255, 153, 204));
 			
-			label_search.setBounds(44, 30, 30, 14);
+			label_search.setBounds(225, 34, 41, 14);
 			panelButtons.add(label_search);
 			
 			text_search = new JTextField();
-			text_search.setBounds(98, 27, 211, 20);
+			text_search.setBounds(274, 30, 238, 23);
 			text_search.setColumns(10);
 			panelButtons.add(text_search);
 			
-			button_search.setBounds(319, 26, 89, 23);
+			button_search.setBounds(560, 0, 147, 23);
 			button_search.addActionListener(butMainActListener);
 			panelButtons.add(button_search);
+			button_search.setForeground(new Color(0, 0, 0));
+			button_search.setBackground(UIManager.getColor("Button.light"));
 			
 			JButton button_show_all = new JButton("\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u0432\u0441\u0435");
 			button_show_all.addActionListener(new ActionListener() {
@@ -478,7 +555,7 @@ import javax.swing.*;
 					updateList();
 				}
 			});
-			button_show_all.setBounds(438, 26, 109, 23);
+			button_show_all.setBounds(560, 30, 147, 23);
 			panelButtons.add(button_show_all);
 			
 			//Center Panel (List Information About Clients, Zakazu, Sotrudniki, etc.)
@@ -492,25 +569,58 @@ import javax.swing.*;
 			scrollPane.setViewportView(list);
 			scrollPane.setPreferredSize(new Dimension(500, 360));
 			panelCenter.add(scrollPane);
+//			menuBar.setBackground(new Color(0, 0, 0));
 			
 			//Menu Bar
 			this.setJMenuBar(menuBar);
+	//		menuMain.setForeground(new Color(255, 51, 102));
+	//		menuMain.setBackground(new Color(0, 0, 0));
 			menuBar.add(menuMain);
+	//		menuOtchet.setForeground(new Color(255, 51, 102));
+	//		menuOtchet.setBackground(new Color(0, 0, 0));
 			menuBar.add(menuOtchet);
+	//		menuItemZakaz.setBackground(new Color(0, 0, 0));
+	//		menuItemZakaz.setForeground(new Color(255, 153, 204));
 
 			menuMain.add(menuItemZakaz);
 			menuItemZakaz.addActionListener(mainMenuActListener);
+//			menuItemMaterial.setForeground(new Color(255, 153, 204));
+//			menuItemMaterial.setBackground(new Color(0, 0, 0));
 			menuMain.add(menuItemMaterial);
 			menuItemMaterial.addActionListener(mainMenuActListener);
+//			menuItemUsluga.setForeground(new Color(255, 153, 204));
+//			menuItemUsluga.setBackground(new Color(0, 0, 0));
 			menuMain.add(menuItemUsluga);
 			menuItemUsluga.addActionListener(mainMenuActListener);
+//			menuItemClient.setForeground(new Color(255, 153, 204));
+//			menuItemClient.setBackground(new Color(0, 0, 0));
 			menuMain.add(menuItemClient);
 			menuItemClient.addActionListener(mainMenuActListener);
+//			menuItemSotrudnik.setBackground(new Color(0, 0, 0));
+//			menuItemSotrudnik.setForeground(new Color(255, 153, 204));
 			menuMain.add(menuItemSotrudnik);
 			menuItemSotrudnik.addActionListener(mainMenuActListener);
+//			menuItemOtchetZakaz.setForeground(new Color(255, 153, 204));
+//			menuItemOtchetZakaz.setBackground(new Color(0, 0, 0));
+			menuMain.add(menuItemExit);
+			menuItemExit.addActionListener(mainMenuActListener);
+//			menuItemExit.setBackground(new Color(0, 0, 0));
+//			menuItemExit.setForeground(new Color(255, 153, 204));
+			
+//			menuItemExit.setIcon(new ImageIcon(getClass().getResource("bye00000.gif")));
+//			menuItemZakaz.setIcon(new ImageIcon(getClass().getResource("m-various.png")));
+//			menuItemMaterial.setIcon(new ImageIcon(getClass().getResource("some.png")));
+//			menuItemUsluga.setIcon(new ImageIcon(getClass().getResource("love.png")));
+//			menuItemClient.setIcon(new ImageIcon(getClass().getResource("blonde.png")));
+//			menuItemSotrudnik.setIcon(new ImageIcon(getClass().getResource("people.png")));
+//			menuItemOtchetZakaz.setIcon(new ImageIcon(getClass().getResource("important.png")));
+//			menuItemOtchetPribul.setIcon(new ImageIcon(getClass().getResource("expensive.png")));
+			
 
 			menuOtchet.add(menuItemOtchetZakaz);
 			menuItemOtchetZakaz.addActionListener(otchetsActListener);
+//			menuItemOtchetPribul.setBackground(new Color(0, 0, 0));
+//			menuItemOtchetPribul.setForeground(new Color(255, 153, 204));
 			menuOtchet.add(menuItemOtchetPribul);
 			menuItemOtchetPribul.addActionListener(otchetsActListener);
 			panelCenter.setLayout(null);
@@ -562,4 +672,7 @@ import javax.swing.*;
 				e.printStackTrace();
 			}
 		}
+	
+	
+	
 	}

@@ -7,9 +7,9 @@ import javax.swing.border.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
 
+
+@SuppressWarnings("serial")
 public class UslugaDialog extends JFrame{
 	private JPanel contentPane;
 	private JTextField textField_name;
@@ -51,6 +51,7 @@ public class UslugaDialog extends JFrame{
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+	//	panel.setBackground(new Color(255, 204, 255));
 		panel.setBounds(0, 0, 392, 233);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -94,14 +95,17 @@ public class UslugaDialog extends JFrame{
 		button_insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("")){
+				
 					try{
 						Usluga u=new Usluga();
+						
+							
 						u.setNazvanie(textField_name.getText());
 						u.setPrice(Integer.parseInt(textField_price.getText()));
 						u.setTime(Integer.parseInt(textField_time.getText()));
 						u.setLength_hair(comboBox_length_hair.getSelectedItem().toString());
 						u.setSex(comboBox_sex.getSelectedItem().toString());
-						
+							
 				
 						DBClass db=new DBClass();
 						db.uslugaUpsert(u, "INSERT");
@@ -143,10 +147,12 @@ public class UslugaDialog extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textField_name.getText().equals("") && !textField_price.getText().equals("")){
 					try{
+						
 						Usluga u=new Usluga();
 						u.setId_uslugi(Integer.parseInt(label_id_hidden.getText()));
 						u.setNazvanie(textField_name.getText());
 						u.setPrice(Integer.parseInt(textField_price.getText()));
+						
 						u.setTime(Integer.parseInt(textField_time.getText()));
 						u.setLength_hair(comboBox_length_hair.getSelectedItem().toString());
 						u.setSex(comboBox_sex.getSelectedItem().toString());
